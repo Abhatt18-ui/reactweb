@@ -9,17 +9,18 @@ import { Box,
     Button, 
     Stack, 
     useColorModeValue, 
-    useColorMode,}
+    useColorMode}
     from '@chakra-ui/react';
   import {Link as ReactLink} from 'react-router-dom'
   import {HamburgerIcon, CloseIcon, MoonIcon, SunIcon} from '@chakra-ui/icons';
   import {GiTechnoHeart} from 'react-icons/gi';
-  
-  const links = [
-    {linkName:'products', path: '/products'},
-    {linkName:'ShoppingCart', path:'/cart'},
-  ];
-  
+  import { useState } from 'react';
+
+  const links =[
+    {linkName: 'Products', path: '/products'},
+    {linkName: 'ShoppingCart', path: '/cart'},
+  ]
+
   const NavLink = ({ path, children }) => (
     <Link
       as={ReactLink}
@@ -31,10 +32,11 @@ import { Box,
       {children}
     </Link>
   );
-  
+
   const Navbar = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();
     const { colorMode, toggleColorMode } = useColorMode();
+    const [isHovering, setIsHovering] = useState(false);
     return (
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems='center' justifyContent='space-between'>
@@ -47,9 +49,11 @@ import { Box,
 
 
         <HStack>
-          <Link as={ReactLink} to='/'>
+          <Link as={ReactLink} to='/' style={{textDecoration: 'none'}}
+          onMouseEnter={()=> setIsHovering(true)}
+          onMouseLeave={()=> setIsHovering(false)}>
             <Flex alignItems='center'>
-              <Icon as={GiTechnoHeart} h={6} w={6} color="orange.400" />
+              <Icon as={GiTechnoHeart} h={6} w={6} color={isHovering ? 'cyan.400': 'orange.400'} />
               <Text fontWeight='extrabold'>Tech Lines </Text>
             </Flex>
           </Link>
@@ -113,4 +117,4 @@ import { Box,
   );
 }
   
-  export default Navbar
+  export default Navbar;

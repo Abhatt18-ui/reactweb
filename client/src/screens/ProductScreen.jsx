@@ -19,7 +19,7 @@ import {
   useToast,
   Tooltip,
   Textarea,
-  Input,
+  Input
 } from '@chakra-ui/react';
 import { MinusIcon, StarIcon, AddIcon } from '@chakra-ui/icons';
 import { BiPackage, BiCheckShield, BiSupport } from 'react-icons/bi';
@@ -38,28 +38,27 @@ const ProductScreen = () => {
   const products = useSelector((state) => state.products);
   const { loading, error, product } = products;
 
-
   const cartContent = useSelector((state) => state.cart);
   const { cart } = cartContent;
  
-   useEffect(() => {
-      dispatch(getProduct(id));
+  useEffect(() => {
+    dispatch(getProduct(id));
     }, [dispatch, id, cart]);
 
-  const changeAmount =(input) =>{
-    if(input ==='plus'){
-      setAmount(amount+1);
-    }
-    if(input ==='minus'){
-      setAmount(amount-1);
-    }
-  };
+    const changeAmount = (input) => {
+      if (input === 'plus') {
+        setAmount(amount + 1);
+      }
+      if (input === 'minus') {
+        setAmount(amount - 1);
+      }
+    };
 
-  const addItem =()=>{
-    dispatch(addCartItem(product._id, amount));
-    toast({description: 'Item has been added.', status:'success', isClosable:true});
-  };
-
+    const addItem = () => {
+      dispatch(addCartItem(product._id, amount));
+      toast({ description: 'Item has been added.', status: 'success', isClosable: true });
+    };
+    
   return (
     <Wrap spacing='30px' justify='center' minHeight='100vh'>
      {loading ? (
