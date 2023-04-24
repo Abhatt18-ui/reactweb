@@ -16,10 +16,7 @@ import {
   HStack,
   Button,
   SimpleGrid,
-  useToast,
-  Tooltip,
-  Textarea,
-  Input
+  useToast
 } from '@chakra-ui/react';
 import { MinusIcon, StarIcon, AddIcon } from '@chakra-ui/icons';
 import { BiPackage, BiCheckShield, BiSupport } from 'react-icons/bi';
