@@ -37,7 +37,8 @@ const ProfileScreen = () => {
 useEffect(() => {
     if (updateSuccess) {
     toast({ description: 'Profile saved.', status: 'success', isClosable: true });
-}
+    dispatch(resetUpdateSuccess());
+ }
 },[toast, updateSuccess]);
 
 return userInfo ? (
