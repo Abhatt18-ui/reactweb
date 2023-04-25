@@ -31,7 +31,7 @@ import {
               <Flex alignItems='center'>
                 <Icon as={GiTechnoHeart} h={12} w={12} 
                 color={useColorModeValue('orange.500', 'orange.300')}/>
-                <Text fontsize="4xl" fontWeight='bold' >
+                <Text fontSize="4xl" fontWeight='bold' >
                 Tech Lines
               </Text>
               </Flex>           
