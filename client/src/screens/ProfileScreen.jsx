@@ -15,7 +15,7 @@ import {
     CardHeader,
     CardBody,
     StackDivider,
-    useToast
+    useToast,
   } from '@chakra-ui/react';
   import TextField from '../components/TextField';
   import PasswordTextField from '../components/PasswordTextFeild';
@@ -23,23 +23,24 @@ import {
   import {Formik} from 'formik';
   import * as Yup from 'yup';
   import { useDispatch, useSelector} from 'react-redux';
-  import {usdateProfile, resetUpdateSuccess, updateProfile} from '../redux/actions/userActions';
+  import {resetUpdateSuccess, updateProfile} from '../redux/actions/userActions';
   import {useLocation} from 'react-router';
   import {Navigate} from 'react-router-dom';
 
 const ProfileScreen = () => {
     const dispatch = useDispatch();
     const user = useSelector((state)=> state.user);
-    const {userInfo, error, loading, updateSuccess} = user;
+    const { userInfo, error, loading, updateSuccess } = user;
     const location = useLocation();
     const toast = useToast();
 
 useEffect(() => {
-    if (updateSuccess) {
-    toast({ description: 'Profile saved.', status: 'success', isClosable: true });
-    dispatch(resetUpdateSuccess());
- }
-},[toast, updateSuccess]);
+  if (updateSuccess) {
+   toast({ description: 'Profile saved.', status: 'success', isClosable: true });
+   dispatch(resetUpdateSuccess());
+  }
+}, [dispatch, toast, updateSuccess]);
+  
 
 return userInfo ? (
     <Formik
