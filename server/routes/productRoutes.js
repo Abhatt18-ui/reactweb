@@ -2,7 +2,7 @@ import express from 'express';
 import Product from '../models/Product.js';
 import asyncHandler from 'express-async-handler';
 import User from '../models/User.js';
-import {protectRoute} from '../middleware/authMiddleware.js';
+import {protectRoute , admin} from '../middleware/authMiddleware.js';
 
 const productRoutes = express.Router();
 
@@ -55,8 +55,73 @@ const getProduct = async (req, res) => {
     }
   });  
 
+// create a product
+const createNewProduct = asyncHandler(async(req, res)=>{
+  const {brand, name, category, stock, price, image, productIsNew, description} = req.body;
+
+  const newProduct = await Product.create({
+    brand, 
+    name, 
+    category, 
+    stock, 
+    price, 
+    image:'/image' + image,
+    productIsNew, 
+    description,
+  });
+  await newProduct.save();
+
+  const products = await Product.find({})
+
+  if(newProduct){
+    res.json(products)
+  }else{
+    res.status(404)
+    throw new Error('Product could not be uploaded.')
+  }
+});
+
+// delete a product
+const deleteProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findByIdAndDelete(req.params.id);
+
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404);
+    throw new Error('Product not found');
+  }
+});
+
+// update a product
+const updateProduct = asyncHandler(async(req, res)=>{
+  const {brand, name, category, stock, price, image, id, productIsNew, description} = req.body;
+
+  const product = await Product.findById(id);
+
+  if (product){
+    product.brand = brand;
+    product.name = name;
+    product.category = category;
+    product.stock = stock;
+    product.price = price;
+    product.image = '/image'+ image;
+    product.productIsNew = productIsNew;
+    product.description = description;
+
+    const updateProduct = await product.save();
+    res.json(updateProduct);
+    }else{
+      res.status(404)
+      throw new Error('Product not found.');
+    }
+  });
+
 productRoutes.route('/').get(getProducts);
 productRoutes.route('/:id').get(getProduct);
 productRoutes.route('/reviews/:id').post(protectRoute, createProductReview);
+productRoutes.route('/').put(protectRoute, admin, updateProduct);
+productRoutes.route('/:id').delete(protectRoute, admin, deleteProduct);
+productRoutes.route('/').post(protectRoute, admin, createNewProduct);
 
 export default productRoutes;
