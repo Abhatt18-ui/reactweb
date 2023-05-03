@@ -37,6 +37,7 @@ const ProductScreen = () => {
   const [amount, setAmount] = useState(1);
   let { id } = useParams();
   const toast = useToast();
+
   //redux
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -56,7 +57,7 @@ const ProductScreen = () => {
       dispatch(resetProductError());
       setReviewBoxOpen(false);
     }
-  }, [dispatch, id, cart, reviewSend]);
+  }, [dispatch, id, cart, reviewSend,toast]);
 
   const changeAmount = (input) => {
     if (input === 'plus') {
