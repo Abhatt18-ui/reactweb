@@ -27,8 +27,7 @@ const genToken = (id) => {
         createdAt: user.createdAt,
       });
     } else {
-      res.status(401).send('Invalid Email or Password');
-      throw new Error('User not found.');
+      res.status(401).json('Invalid Email or Password');
     }
 });
 
@@ -38,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const userExists = await User.findOne({ email });
   if (userExists) {
-    res.status(400).send('We already have an account with that email address.');
+    res.status(400).json('We already have an account with that email address.');
   }
 
   const user = await User.create({
@@ -57,8 +56,7 @@ if (user) {
     createdAt: user.createdAt,
   });
 } else {
-  res.status(400).send('We could not register you.');
-  throw new Error('Something went wrong. Please check your data and try again.');
+  res.status(400).json('We could not register you.');
 }
 });
 
