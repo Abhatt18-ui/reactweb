@@ -33,7 +33,7 @@ const YourOrdersScreen = () => {
     if(userInfo){
         dispatch(getUserOrders())
     }
-  },[]);
+  },[dispatch, userInfo]);
 
   return userInfo ? ( <>
   {loading ? (

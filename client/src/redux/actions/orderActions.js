@@ -23,7 +23,12 @@ export const createOrder = (order) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const {data} = await axios.post('api/orders', preparedOrder, config);
+    const { data } = await axios.post('api/orders', preparedOrder, config);
+    if (data.success) {
+      // do something if the order was successfully created
+    } else {
+      // do something else if the order was not successfully created
+    }
   } catch (error) {
     dispatch(
       setError(
@@ -35,7 +40,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       )
     );
   }
-};
+  
 
 export const resetOrder = () => async (dispatch) => {
   dispatch(clearOrder());
