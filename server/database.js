@@ -1,4 +1,4 @@
-//connection to our database.
+//connections to our database.
 import mongoose from "mongoose";
 
 const connectToDatabase = async () => {
