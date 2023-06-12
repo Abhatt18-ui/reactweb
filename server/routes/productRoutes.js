@@ -145,7 +145,6 @@ const updateProduct = asyncHandler(async(req, res)=>{
   });
 
 productRoutes.route('/').get(getProducts);
-productRoutes.route('/:id').get(getProduct);
 productRoutes.route('/reviews/:id').post(protectRoute, createProductReview);
 productRoutes.route('/').put(protectRoute, admin, updateProduct);
 productRoutes.route('/:id').delete(protectRoute, admin, deleteProduct);

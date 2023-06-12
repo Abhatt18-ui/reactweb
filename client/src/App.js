@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Navbar from "./components/Navbar";
 import ProductsScreen from './screens/ProductsScreen';
 import CartScreen from './screens/CartScreen';
-import ProductScreen from './screens/ProductScreen';
 import Footer from './components/Footer';
 import LandingScreen from './screens/LandingScreen';
 import LoadingScreen from './screens/LoginScreen';
@@ -22,7 +21,6 @@ function App() {
 <Routes>
   <Route path="/" element={<LandingScreen/>}></Route>
   <Route path="/products" element={<ProductsScreen/>}></Route>
-  <Route path="/product/:id" element={<ProductScreen/>}></Route>
   <Route path="/cart" element={<CartScreen/>}></Route>
   <Route path='/login' element={<LoadingScreen/>}/>
   <Route path='/registration' element={<RegistrationScreen/>}/>
