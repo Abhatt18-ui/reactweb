@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "client": "npm run start --prefix client",
     "start": "node server/index.js",
-    "app": "concurrently npm \"npm run start\" \"npm run client\"",
-    "build": "cd client && npm install && npm run build"
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "app": "concurrently \"npm run start\" \"npm run client\"",
+    "client": "cd client && npm run build"
   },
   "author": "Aditi",
   "license": "ISC",
