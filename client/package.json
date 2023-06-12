@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy" : "http://localhost:5000",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.18",
     "@chakra-ui/react": "^2.5.5",
@@ -18,6 +18,7 @@
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
+    "techline-client": "file:..",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.2"
   },
@@ -26,7 +27,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
- 
   },
   "eslintConfig": {
     "extends": [
