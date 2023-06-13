@@ -26,6 +26,7 @@
     "gh-pages": "^5.0.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
+    "node": "^20.2.0",
     "react-redux": "^8.0.5"
   },
   "devDependencies": {
