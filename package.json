@@ -7,8 +7,6 @@
   "scripts": {
     "client": "npm run start --prefix client",
     "start": "node server/index.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "app": "concurrently npm \"npm run start\" \"npm run client\"",
     "build": "cd client && npm install && npm run build"
   },
